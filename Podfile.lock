@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (5.2.1)
+  - Cloudinary (2.9.0):
+    - Cloudinary/ios (= 2.9.0)
+  - Cloudinary/ios (2.9.0)
+  - "UITextView+Placeholder (1.4.0)"
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - Cloudinary (~> 2.0)
+  - "UITextView+Placeholder"
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Cloudinary
+    - "UITextView+Placeholder"
+
+SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Cloudinary: 8e9511826bd58df6b14f0c6c042f2c5a034081f4
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+
+PODFILE CHECKSUM: ceed764b9f0541fe2b2830ddab6e7b874b0f463f
+
+COCOAPODS: 1.9.1

@@ -3,17 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72F54A2E5D5899DB6E138CE3 /* Pods_Clippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB0C7AA787922241892B0CF /* Pods_Clippy.framework */; };
+		A4B7073336E03FC3E74D3599 /* Pods_ClippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BB460E3A67E5DD9B76E0A6 /* Pods_ClippyTests.framework */; };
 		EB5BF5C6248BDC5200882E7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C5248BDC5200882E7D /* AppDelegate.swift */; };
 		EB5BF5C8248BDC5200882E7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C7248BDC5200882E7D /* SceneDelegate.swift */; };
-		EB5BF5CA248BDC5200882E7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C9248BDC5200882E7D /* ViewController.swift */; };
-		EB5BF5CD248BDC5200882E7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB5BF5CB248BDC5200882E7D /* Main.storyboard */; };
+		EB5BF5CA248BDC5200882E7D /* AddClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C9248BDC5200882E7D /* AddClipViewController.swift */; };
 		EB5BF5CF248BDC5300882E7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB5BF5CE248BDC5300882E7D /* Assets.xcassets */; };
 		EB5BF5D2248BDC5300882E7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB5BF5D0248BDC5300882E7D /* LaunchScreen.storyboard */; };
 		EB5BF5DD248BDC5300882E7D /* ClippyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5DC248BDC5300882E7D /* ClippyTests.swift */; };
+		EB5BF5E8248BDCA700882E7D /* AddClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5E7248BDCA700882E7D /* AddClipView.swift */; };
+		EB5BF5EA248BFB2C00882E7D /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */; };
+		EB5BF5ED248C0BA000882E7D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */; };
+		EB5BF5EF248C0BA700882E7D /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EE248C0BA700882E7D /* AVKit.framework */; };
+		EB6722AF249925D400B56812 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722AE249925D400B56812 /* NetworkManger.swift */; };
+		EB6722B1249937B600B56812 /* ClipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722B0249937B600B56812 /* ClipService.swift */; };
+		EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D283B2497D706000A17BA /* DetailClipView.swift */; };
+		EB6D283F2497D91A000A17BA /* DetailClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */; };
+		EB6D2841249850A1000A17BA /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */; };
+		EB6D284324988C6F000A17BA /* UtilExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D284224988C6F000A17BA /* UtilExtension.swift */; };
+		EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */; };
+		EB8446A024AF0061005B50FA /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84469F24AF0061005B50FA /* CategoryCell.swift */; };
+		EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */; };
+		EBEA0430249709C000D8DBB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042F249709C000D8DBB1 /* HomeViewController.swift */; };
+		EBEA04332497118600D8DBB1 /* ClipWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA04322497118600D8DBB1 /* ClipWithID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +43,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		119423473595BE5CCE2B1A26 /* Pods-Clippy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clippy.release.xcconfig"; path = "Target Support Files/Pods-Clippy/Pods-Clippy.release.xcconfig"; sourceTree = "<group>"; };
+		2EB0C7AA787922241892B0CF /* Pods_Clippy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clippy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5721042282D66CE46752A416 /* Pods-ClippyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClippyTests.release.xcconfig"; path = "Target Support Files/Pods-ClippyTests/Pods-ClippyTests.release.xcconfig"; sourceTree = "<group>"; };
+		60BB460E3A67E5DD9B76E0A6 /* Pods_ClippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7B5BF1935A8071185FAEF71 /* Pods-ClippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClippyTests.debug.xcconfig"; path = "Target Support Files/Pods-ClippyTests/Pods-ClippyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC1D37A4783FB7BFEE98DC93 /* Pods-Clippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clippy.debug.xcconfig"; path = "Target Support Files/Pods-Clippy/Pods-Clippy.debug.xcconfig"; sourceTree = "<group>"; };
 		EB5BF5C2248BDC5200882E7D /* Clippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5BF5C5248BDC5200882E7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB5BF5C7248BDC5200882E7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB5BF5C9248BDC5200882E7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EB5BF5CC248BDC5200882E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB5BF5C9248BDC5200882E7D /* AddClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClipViewController.swift; sourceTree = "<group>"; };
 		EB5BF5CE248BDC5300882E7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB5BF5D1248BDC5300882E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB5BF5D3248BDC5300882E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB5BF5D8248BDC5300882E7D /* ClippyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClippyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5BF5DC248BDC5300882E7D /* ClippyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyTests.swift; sourceTree = "<group>"; };
 		EB5BF5DE248BDC5300882E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB5BF5E7248BDCA700882E7D /* AddClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClipView.swift; sourceTree = "<group>"; };
+		EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EB5BF5EE248C0BA700882E7D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		EB6722AE249925D400B56812 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
+		EB6722B0249937B600B56812 /* ClipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipService.swift; sourceTree = "<group>"; };
+		EB6D283B2497D706000A17BA /* DetailClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClipView.swift; sourceTree = "<group>"; };
+		EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClipViewController.swift; sourceTree = "<group>"; };
+		EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
+		EB6D284224988C6F000A17BA /* UtilExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilExtension.swift; sourceTree = "<group>"; };
+		EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		EB84469F24AF0061005B50FA /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		EBEA042F249709C000D8DBB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EBEA04322497118600D8DBB1 /* ClipWithID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipWithID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5BF5EF248C0BA700882E7D /* AVKit.framework in Frameworks */,
+				EB5BF5ED248C0BA000882E7D /* AVFoundation.framework in Frameworks */,
+				72F54A2E5D5899DB6E138CE3 /* Pods_Clippy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +91,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B7073336E03FC3E74D3599 /* Pods_ClippyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6556D5E295DC096BB0D79469 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC1D37A4783FB7BFEE98DC93 /* Pods-Clippy.debug.xcconfig */,
+				119423473595BE5CCE2B1A26 /* Pods-Clippy.release.xcconfig */,
+				A7B5BF1935A8071185FAEF71 /* Pods-ClippyTests.debug.xcconfig */,
+				5721042282D66CE46752A416 /* Pods-ClippyTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B279F447E2E9DC4570F43B90 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */,
+				EBEA042F249709C000D8DBB1 /* HomeViewController.swift */,
+				EB84469F24AF0061005B50FA /* CategoryCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		EB5BF5B9248BDC5200882E7D = {
 			isa = PBXGroup;
 			children = (
 				EB5BF5C4248BDC5200882E7D /* Clippy */,
 				EB5BF5DB248BDC5300882E7D /* ClippyTests */,
 				EB5BF5C3248BDC5200882E7D /* Products */,
+				EB5BF5EB248C0BA000882E7D /* Frameworks */,
+				6556D5E295DC096BB0D79469 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,13 +142,21 @@
 		EB5BF5C4248BDC5200882E7D /* Clippy */ = {
 			isa = PBXGroup;
 			children = (
+				EB6722AD2499255C00B56812 /* Networking */,
+				EB6D283D2497D8FB000A17BA /* Detail */,
+				EBEA04312497116F00D8DBB1 /* Model */,
 				EB5BF5C5248BDC5200882E7D /* AppDelegate.swift */,
 				EB5BF5C7248BDC5200882E7D /* SceneDelegate.swift */,
-				EB5BF5C9248BDC5200882E7D /* ViewController.swift */,
-				EB5BF5CB248BDC5200882E7D /* Main.storyboard */,
+				EB5BF5C9248BDC5200882E7D /* AddClipViewController.swift */,
 				EB5BF5CE248BDC5300882E7D /* Assets.xcassets */,
 				EB5BF5D0248BDC5300882E7D /* LaunchScreen.storyboard */,
 				EB5BF5D3248BDC5300882E7D /* Info.plist */,
+				EB5BF5E7248BDCA700882E7D /* AddClipView.swift */,
+				EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */,
+				B279F447E2E9DC4570F43B90 /* Home */,
+				EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */,
+				EB6D284224988C6F000A17BA /* UtilExtension.swift */,
+				EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */,
 			);
 			path = Clippy;
 			sourceTree = "<group>";
@@ -99,6 +170,43 @@
 			path = ClippyTests;
 			sourceTree = "<group>";
 		};
+		EB5BF5EB248C0BA000882E7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB5BF5EE248C0BA700882E7D /* AVKit.framework */,
+				EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */,
+				2EB0C7AA787922241892B0CF /* Pods_Clippy.framework */,
+				60BB460E3A67E5DD9B76E0A6 /* Pods_ClippyTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB6722AD2499255C00B56812 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EB6722AE249925D400B56812 /* NetworkManger.swift */,
+				EB6722B0249937B600B56812 /* ClipService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EB6D283D2497D8FB000A17BA /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				EB6D283B2497D706000A17BA /* DetailClipView.swift */,
+				EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		EBEA04312497116F00D8DBB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA04322497118600D8DBB1 /* ClipWithID.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB5BF5E1248BDC5300882E7D /* Build configuration list for PBXNativeTarget "Clippy" */;
 			buildPhases = (
+				FA43D2414316270F336D77F6 /* [CP] Check Pods Manifest.lock */,
+				EB708D73248CB0E600A287CA /* Run Amplify Tools */,
 				EB5BF5BE248BDC5200882E7D /* Sources */,
 				EB5BF5BF248BDC5200882E7D /* Frameworks */,
 				EB5BF5C0248BDC5200882E7D /* Resources */,
+				29E0BC99BF23C6DA06E70837 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB5BF5E4248BDC5300882E7D /* Build configuration list for PBXNativeTarget "ClippyTests" */;
 			buildPhases = (
+				656877815820F225A3CCB648 /* [CP] Check Pods Manifest.lock */,
 				EB5BF5D4248BDC5300882E7D /* Sources */,
 				EB5BF5D5248BDC5300882E7D /* Frameworks */,
 				EB5BF5D6248BDC5300882E7D /* Resources */,
@@ -182,7 +294,6 @@
 			files = (
 				EB5BF5D2248BDC5300882E7D /* LaunchScreen.storyboard in Resources */,
 				EB5BF5CF248BDC5300882E7D /* Assets.xcassets in Resources */,
-				EB5BF5CD248BDC5200882E7D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,13 +306,108 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29E0BC99BF23C6DA06E70837 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Clippy/Pods-Clippy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Clippy/Pods-Clippy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Clippy/Pods-Clippy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		656877815820F225A3CCB648 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClippyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB708D73248CB0E600A287CA /* Run Amplify Tools */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Amplify Tools";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/AmplifyTools/amplify-tools.sh\"\n";
+		};
+		FA43D2414316270F336D77F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Clippy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB5BF5BE248BDC5200882E7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB5BF5CA248BDC5200882E7D /* ViewController.swift in Sources */,
+				EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */,
+				EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */,
+				EB6722B1249937B600B56812 /* ClipService.swift in Sources */,
+				EB5BF5CA248BDC5200882E7D /* AddClipViewController.swift in Sources */,
+				EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */,
+				EB5BF5E8248BDCA700882E7D /* AddClipView.swift in Sources */,
+				EB5BF5EA248BFB2C00882E7D /* TagCollectionViewCell.swift in Sources */,
+				EB6D284324988C6F000A17BA /* UtilExtension.swift in Sources */,
+				EB6722AF249925D400B56812 /* NetworkManger.swift in Sources */,
+				EB6D2841249850A1000A17BA /* LinkPresentationItemSource.swift in Sources */,
+				EB6D283F2497D91A000A17BA /* DetailClipViewController.swift in Sources */,
+				EB8446A024AF0061005B50FA /* CategoryCell.swift in Sources */,
 				EB5BF5C6248BDC5200882E7D /* AppDelegate.swift in Sources */,
+				EBEA04332497118600D8DBB1 /* ClipWithID.swift in Sources */,
+				EBEA0430249709C000D8DBB1 /* HomeViewController.swift in Sources */,
 				EB5BF5C8248BDC5200882E7D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,14 +431,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EB5BF5CB248BDC5200882E7D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EB5BF5CC248BDC5200882E7D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EB5BF5D0248BDC5300882E7D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,6 +558,7 @@
 		};
 		EB5BF5E2248BDC5300882E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC1D37A4783FB7BFEE98DC93 /* Pods-Clippy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -378,6 +577,7 @@
 		};
 		EB5BF5E3248BDC5300882E7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 119423473595BE5CCE2B1A26 /* Pods-Clippy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +596,7 @@
 		};
 		EB5BF5E5248BDC5300882E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7B5BF1935A8071185FAEF71 /* Pods-ClippyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +619,7 @@
 		};
 		EB5BF5E6248BDC5300882E7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5721042282D66CE46752A416 /* Pods-ClippyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
