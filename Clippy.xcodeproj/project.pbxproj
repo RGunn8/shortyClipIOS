@@ -19,6 +19,8 @@
 		EB5BF5EA248BFB2C00882E7D /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */; };
 		EB5BF5ED248C0BA000882E7D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */; };
 		EB5BF5EF248C0BA700882E7D /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EE248C0BA700882E7D /* AVKit.framework */; };
+		EB63AC4924B68A420088C944 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63AC4824B68A420088C944 /* CategoryViewController.swift */; };
+		EB63AC4B24B6DCF90088C944 /* DetailClipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */; };
 		EB6722AF249925D400B56812 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722AE249925D400B56812 /* NetworkManger.swift */; };
 		EB6722B1249937B600B56812 /* ClipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722B0249937B600B56812 /* ClipService.swift */; };
 		EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D283B2497D706000A17BA /* DetailClipView.swift */; };
@@ -27,6 +29,7 @@
 		EB6D284324988C6F000A17BA /* UtilExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D284224988C6F000A17BA /* UtilExtension.swift */; };
 		EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */; };
 		EB8446A024AF0061005B50FA /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84469F24AF0061005B50FA /* CategoryCell.swift */; };
+		EBBFB6C424B8C240004E0423 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBFB6C324B8C240004E0423 /* UserViewController.swift */; };
 		EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */; };
 		EBEA0430249709C000D8DBB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042F249709C000D8DBB1 /* HomeViewController.swift */; };
 		EBEA04332497118600D8DBB1 /* ClipWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA04322497118600D8DBB1 /* ClipWithID.swift */; };
@@ -63,6 +66,8 @@
 		EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB5BF5EE248C0BA700882E7D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		EB63AC4824B68A420088C944 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailClipView.xib; sourceTree = "<group>"; };
 		EB6722AE249925D400B56812 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
 		EB6722B0249937B600B56812 /* ClipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipService.swift; sourceTree = "<group>"; };
 		EB6D283B2497D706000A17BA /* DetailClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClipView.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		EB6D284224988C6F000A17BA /* UtilExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilExtension.swift; sourceTree = "<group>"; };
 		EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB84469F24AF0061005B50FA /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		EBBFB6C324B8C240004E0423 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		EBEA042F249709C000D8DBB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EBEA04322497118600D8DBB1 /* ClipWithID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipWithID.swift; sourceTree = "<group>"; };
@@ -152,7 +158,7 @@
 				EB5BF5D0248BDC5300882E7D /* LaunchScreen.storyboard */,
 				EB5BF5D3248BDC5300882E7D /* Info.plist */,
 				EB5BF5E7248BDCA700882E7D /* AddClipView.swift */,
-				EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */,
+				EBBFB6C524B8C24B004E0423 /* User */,
 				B279F447E2E9DC4570F43B90 /* Home */,
 				EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */,
 				EB6D284224988C6F000A17BA /* UtilExtension.swift */,
@@ -193,10 +199,21 @@
 		EB6D283D2497D8FB000A17BA /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */,
 				EB6D283B2497D706000A17BA /* DetailClipView.swift */,
+				EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */,
 				EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */,
+				EB63AC4824B68A420088C944 /* CategoryViewController.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		EBBFB6C524B8C24B004E0423 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EBBFB6C324B8C240004E0423 /* UserViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		EBEA04312497116F00D8DBB1 /* Model */ = {
@@ -292,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB63AC4B24B6DCF90088C944 /* DetailClipView.xib in Resources */,
 				EB5BF5D2248BDC5300882E7D /* LaunchScreen.storyboard in Resources */,
 				EB5BF5CF248BDC5300882E7D /* Assets.xcassets in Resources */,
 			);
@@ -394,7 +412,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */,
+				EBBFB6C424B8C240004E0423 /* UserViewController.swift in Sources */,
 				EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */,
+				EB63AC4924B68A420088C944 /* CategoryViewController.swift in Sources */,
 				EB6722B1249937B600B56812 /* ClipService.swift in Sources */,
 				EB5BF5CA248BDC5200882E7D /* AddClipViewController.swift in Sources */,
 				EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */,

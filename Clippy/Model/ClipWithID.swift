@@ -20,6 +20,36 @@ struct ClipWithID:Codable {
     let created:String
     let currentUserLikes:Bool
     let category:Int?
+
+    func convertCreatedDateToString() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMMM dd,yyyy"
+
+        if let date = dateFormatterGet.date(from: created) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+          return ""
+        }
+    }
+
+    func getTagLabel() -> String{
+        guard let  tags = tags else {
+            return ""
+        }
+        if tags.isEmpty {
+            return ""
+        }else{
+            var clipTag = ""
+            for tag in tags {
+                clipTag += "#\(tag) "
+            }
+            return clipTag
+        }
+    }
+
 }
 
 struct ClipPost:Codable {
@@ -48,3 +78,15 @@ struct Category:Codable {
     let name:String
 }
 
+struct SearchItemPost:Codable {
+    let searchItem:String
+}
+
+struct SearchItem:Codable {
+    let searchItem:String
+    let count:Int
+}
+
+struct SearchItemResponse:Codable {
+    let searchItems:[SearchItem]
+}

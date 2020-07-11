@@ -13,29 +13,24 @@ class TagCollectionViewCell: UICollectionViewCell {
 
     let titleLabel: UILabel
       override init(frame: CGRect) {
-            // 10.
             titleLabel = UILabel()
             titleLabel.textAlignment = .left
             titleLabel.numberOfLines = 1
-
-            titleLabel.backgroundColor = UIColor.green
             super.init(frame: frame)
-
-            contentView.backgroundColor = UIColor.white
-
+            contentView.backgroundColor = UIColor.clear
             contentView.addSubview(titleLabel)
             configureLabels()
         }
 
         func configureLabels() {
-            // 11.
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.addCodeConstraints(parentView: self, constraints: [
+                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+                titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            ])
 
-            let top = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
-            top.priority = UILayoutPriority(999)
-            let leading = titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
-            let trailing = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
-            NSLayoutConstraint.activate([top, leading, trailing])
+            
 
 
         }
@@ -44,7 +39,7 @@ class TagCollectionViewCell: UICollectionViewCell {
             fatalError("init(coder:) has not been implemented")
         }
 
-        // 13.
+    
         override func layoutSubviews() {
             super.layoutSubviews()
             titleLabel.preferredMaxLayoutWidth = titleLabel.frame.size.width

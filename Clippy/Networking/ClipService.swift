@@ -10,17 +10,17 @@ import Foundation
 import Alamofire
 
 class ClipService{
-    var baseURL = "9d7274846471.ngrok.io"
+    var baseURL = "50e01fce5eb1.ngrok.io"
     static let shared = ClipService()
     private init(){}
 
-    func getAllClips(completionHandler:@escaping (NetworkResponse)->()){
+    func getAllClips(pageNumber:Int = 1,completionHandler:@escaping (NetworkResponse)->()){
 
-        guard let url = getURL(path: "/api/v1/home") else {
+        guard let url = getURL(path: "/api/v1/clips/",pageNumber: pageNumber) else {
             completionHandler(NetworkResponse.Error(error: "Invalid URL"))
             return
         }
-        AF.request(url).responseDecodable(of: TrendingClipResponse.self) { (response) in
+        AF.request(url).responseDecodable(of: ClipListResponse.self) { (response) in
             if let error = response.error{
                 print(error)
                 completionHandler(NetworkResponse.Error(error: error.localizedDescription))
@@ -33,8 +33,30 @@ class ClipService{
         }
     }
 
-    func getFilterClips(searchText:String,completionHandler:@escaping (NetworkResponse)->()){
-            guard let url = getURL(path: "/api/v1/clips/",searchString: searchText) else {
+    func getCategoryClips(categoryID:Int,pageNumber:Int = 1, completionHandler:@escaping (NetworkResponse)->()){
+
+         guard let url = getURL(path: "/api/v1/clip/category/\(categoryID)",pageNumber: pageNumber) else {
+             completionHandler(NetworkResponse.Error(error: "Invalid URL"))
+             return
+         }
+         AF.request(url).responseDecodable(of: ClipListResponse.self) { (response) in
+             if let error = response.error{
+                 print(error)
+                 completionHandler(NetworkResponse.Error(error: error.localizedDescription))
+                     return
+             }
+
+             if let clips = response.value{
+                completionHandler(NetworkResponse.Success(response: clips))
+             }
+         }
+     }
+
+
+
+
+    func getFilterClips(searchText:String,pageNumber:Int=1,completionHandler:@escaping (NetworkResponse)->()){
+            guard let url = getURL(path: "/api/v1/clips/",searchString: searchText,pageNumber: pageNumber) else {
                       completionHandler(NetworkResponse.Error(error: "Invalid URL"))
                       return
                   }
@@ -87,11 +109,48 @@ class ClipService{
         }
     }
 
+    func getPopularSearch(completionHandler:@escaping (NetworkResponse)->()){
+        guard let url = getURL(path: "/api/v1/clip/popluarSearch") else {
+                              completionHandler(NetworkResponse.Error(error: "Invalid URL"))
+                              return
+                          }
+        AF.request(url).responseDecodable(of: SearchItemResponse.self) { (response) in
+                       if let error = response.error{
+                           completionHandler(NetworkResponse.Error(error: error.localizedDescription))
+                               return
+                       }
+
+                       if let searchItem = response.value{
+                           completionHandler(NetworkResponse.Success(response: searchItem))
+                       }
+                   }
+    }
+
+    func addSearchItem(searchItem:String){
+        guard let url = getURL(path: "/api/v1/clip/searchItem") else {
+
+                       return
+                   }
+
+        let searchItemPost = SearchItemPost(searchItem: searchItem)
+
+        let request = AF.request(url,method: .post,parameters:searchItemPost,encoder: JSONParameterEncoder.default)
+        request.response {response in
+                   if let error = response.error{
+                    print(error)
+                       return
+                   }
+        }
+
+    }
+
     func addClip(clip:ClipPost, completionHandler:@escaping (NetworkResponse)->()){
         guard let url = getURL(path: "/api/v1/clip/new") else {
                    completionHandler(NetworkResponse.Error(error: "Invalid URL"))
                    return
                }
+
+
 
         let defaults = UserDefaults.standard
                   defaults.object(forKey: "token")
@@ -120,15 +179,23 @@ class ClipService{
 
     }
 
-    func getURL(path:String,searchString:String? = nil) -> URL?{
+    func getURL(path:String,searchString:String? = nil,pageNumber:Int? = nil) -> URL?{
         var components = URLComponents()
         components.scheme = "http"
         components.host = baseURL
         components.path = path
+        var queryItems = [URLQueryItem]()
         if let searchString = searchString{
             let queryItem = URLQueryItem(name: "search", value: searchString)
-            components.queryItems = [queryItem]
+            queryItems.append(queryItem)
         }
+        if let pageNumber = pageNumber {
+            let queryItem = URLQueryItem(name: "page", value: String(pageNumber))
+              queryItems.append(queryItem)
+        }
+
+        components.queryItems = queryItems
+
         return components.url
     }
 }

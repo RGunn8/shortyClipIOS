@@ -11,6 +11,7 @@ target 'Clippy' do
 pod 'UITextView+Placeholder'
  pod 'Cloudinary', '~> 2.0'
 pod 'Alamofire', '~> 5.2'
+pod "TTGTagCollectionView"
 
   target 'ClippyTests' do
     inherit! :search_paths

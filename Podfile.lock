@@ -3,24 +3,28 @@ PODS:
   - Cloudinary (2.9.0):
     - Cloudinary/ios (= 2.9.0)
   - Cloudinary/ios (2.9.0)
+  - TTGTagCollectionView (1.11.1)
   - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Cloudinary (~> 2.0)
+  - TTGTagCollectionView
   - "UITextView+Placeholder"
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Cloudinary
+    - TTGTagCollectionView
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Cloudinary: 8e9511826bd58df6b14f0c6c042f2c5a034081f4
+  TTGTagCollectionView: 86fcbfa6a7493c9e860b01c2e693cffc8acf6de1
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: ceed764b9f0541fe2b2830ddab6e7b874b0f463f
+PODFILE CHECKSUM: 4ede28b9a60e7f1f8f5f86fd77e287d90e7276b6
 
 COCOAPODS: 1.9.1

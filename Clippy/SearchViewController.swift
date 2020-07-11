@@ -12,17 +12,25 @@ import Combine
 class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var searchClips:[ClipWithID] = []
     let searchTableView = UITableView()
+    let spinner = UIActivityIndicatorView(style: .large)
     var searchController: UISearchController!
      private var cancellableBag = Set<AnyCancellable>()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = .white
         searchTableView.addCodeConstraints(parentView: self.view, constraints: [
-            searchTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            searchTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             searchTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             searchTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             searchTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 0)
         ])
+
+        spinner.addCodeConstraints(parentView: self.view, constraints: [
+            spinner.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
+        spinner.color = .blue
+        spinner.isHidden = true
         setUpSearchController()
         searchTableView.rowHeight = UITableView.automaticDimension
         searchTableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -32,11 +40,20 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     }
 
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+
     func setUpSearchController(){
         searchController = UISearchController(searchResultsController: nil)
            searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
-        
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search By Title,Tag,or User"
            searchTableView.tableHeaderView = searchController.searchBar
            definesPresentationContext = true
             searchBarListner()
@@ -48,6 +65,10 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
             ($0.object as! UISearchTextField).text
         }.debounce(for: .milliseconds(500), scheduler: RunLoop.main).sink { (searchText) in
             if let searchText = searchText{
+                self.searchTableView.isHidden = true
+                self.spinner.isHidden = false
+                self.spinner.startAnimating()
+                ClipService.shared.addSearchItem(searchItem: searchText)
                 self.updateSearchResults(searchText: searchText)
             }
         }.store(in: &cancellableBag)
@@ -59,6 +80,9 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
                             DispatchQueue.main.async {
                                 switch response{
                                 case .Success(let newClips):
+                                    self.searchTableView.isHidden = false
+                                    self.spinner.stopAnimating()
+                                    self.spinner.isHidden = true
                                  let addClips = newClips as! ClipListResponse
                                  self.searchClips.removeAll()
                                  self.searchClips.append(contentsOf: addClips.results)
@@ -72,7 +96,12 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchClips.count
+        if isFiltering {
+             return searchClips.count
+        }else {
+             return 0
+        }
+
       }
 
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
