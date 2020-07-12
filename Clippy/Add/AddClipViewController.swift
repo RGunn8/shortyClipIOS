@@ -11,9 +11,10 @@ import MobileCoreServices
 import AVKit
 import AVFoundation
 import Cloudinary
+import TTGTagCollectionView
 
 
-class AddClipViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIVideoEditorControllerDelegate {
+class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIVideoEditorControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,TTGTextTagCollectionViewDelegate  {
     var picker = UIImagePickerController()
     var player = AVQueuePlayer.init()
     var playerLayer = AVPlayerLayer()
@@ -24,20 +25,23 @@ class AddClipViewController: UIViewController,UICollectionViewDataSource,UIColle
     var isStopped = false
     var vidoeDuration = 0
     var clipURL:String?
+    var categoryIndexSelected = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .red
         try! AVAudioSession.sharedInstance().setCategory(.playback, options: [])
         homeView = AddClipView(frame: self.view.frame)
         self.view.addSubview(homeView)
-        homeView.tagCollectionView.delegate = self
-        homeView.tagCollectionView.dataSource = self
+       // homeView.tagCollectionView.delegate = self
         homeView.addTagTextView.delegate = self
+        homeView.tagCollectionView.delegate = self
         homeView.selectVideoButton.addTarget(self, action: #selector(self.openVideoGallery(_:)), for: .touchUpInside)
         homeView.saveButton.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
         homeView.editButton.addTarget(self,action: #selector(editButtonTapped(_:)), for: .touchUpInside)
         setUpVidoePlayer()
+        setTableViewBackgroundGradient()
+        createPickerView()
     }
 
     @objc func editButtonTapped(_ sender:UIButton){
@@ -49,6 +53,24 @@ class AddClipViewController: UIViewController,UICollectionViewDataSource,UIColle
                               present(editController, animated:true)
                           }
         }
+
+    }
+
+
+    func setTableViewBackgroundGradient() {
+
+        let gradientBackgroundColors = [UIColor.white.cgColor, UIColor.red.cgColor]
+       //let gradientLocations = [0,1]
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradientBackgroundColors
+        gradientLayer.locations = [0,1]
+
+
+        gradientLayer.frame = self.view.frame
+        let backgroundView = UIView(frame: self.view.frame)
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        //homeTableView.backgroundView = backgroundView
 
     }
 
@@ -89,8 +111,8 @@ class AddClipViewController: UIViewController,UICollectionViewDataSource,UIColle
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
          if(text == "\n") {
-            tags.append(homeView.addTagTextView.text)
-            homeView.tagCollectionView.reloadData()
+//            tags.append(homeView.addTagTextView.text)
+            homeView.tagCollectionView.addTag("\(homeView.addTagTextView.text ?? "") X")
             textView.text = ""
              textView.resignFirstResponder()
              return false
@@ -147,16 +169,16 @@ class AddClipViewController: UIViewController,UICollectionViewDataSource,UIColle
           playVideo()
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagCollectionViewCell
-        cell.titleLabel.text = tags[indexPath.row]
-        return cell
-
-    }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return tags.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagCollectionViewCell
+//        cell.titleLabel.text = tags[indexPath.row]
+//        return cell
+//
+//    }
 
     func videoEditorController(_ editor: UIVideoEditorController,
          didSaveEditedVideoToPath editedVideoPath: String) {
@@ -173,5 +195,49 @@ class AddClipViewController: UIViewController,UICollectionViewDataSource,UIColle
          print("an error occurred: \(error.localizedDescription)")
          //dismiss(animated:true)
       }
+
+    func createPickerView() {
+           let pickerView = UIPickerView()
+           pickerView.delegate = self
+        pickerView.dataSource = self
+        homeView.categoryTextView.inputView = pickerView
+        dismissPickerView()
+
+    }
+    func dismissPickerView() {
+       let toolBar = UIToolbar()
+       toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+       toolBar.setItems([button], animated: true)
+       toolBar.isUserInteractionEnabled = true
+        homeView.categoryTextView.inputAccessoryView = toolBar
+    }
+    @objc func action() {
+          view.endEditing(true)
+    }
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1 // number of session
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Constants.categories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Constants.categories[row].0
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryIndexSelected = row
+    homeView.categoryTextView.text = Constants.categories[row].0
+    }
+
+    func textTagCollectionView(_ textTagCollectionView: TTGTextTagCollectionView!, canTapTag tagText: String!, at index: UInt, currentSelected: Bool, tagConfig config: TTGTextTagConfig!) -> Bool {
+        textTagCollectionView.removeTag(at: index)
+        textTagCollectionView.reload()
+
+            return false
+
+    }
 }
+
+
 

@@ -48,4 +48,6 @@ extension UIColor{
 struct Constants {
           static let FetchThreshold = 5 // a constant to determine when to fetch the results; anytime   difference between current displayed cell and your total results fall below this number you want to fetch the results and reload the table
           static let FetchLimit = 40 // results to fetch in single call
+
+    static let categories = [("Sports",1),("Movies",2),("Television",3),("Internet",13),("Music",5),("Animals",7),("Video Games",6),("Other",4)]
       }

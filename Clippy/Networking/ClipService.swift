@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 class ClipService{
-    var baseURL = "50e01fce5eb1.ngrok.io"
+    var baseURL = "f8b9a2c55132.ngrok.io"
     static let shared = ClipService()
     private init(){}
 
@@ -110,13 +110,13 @@ class ClipService{
     }
 
     func getPopularSearch(completionHandler:@escaping (NetworkResponse)->()){
-        guard let url = getURL(path: "/api/v1/clip/popluarSearch") else {
+        guard let url = getURL(path: "/api/v1/popluarSearch") else {
                               completionHandler(NetworkResponse.Error(error: "Invalid URL"))
                               return
                           }
         AF.request(url).responseDecodable(of: SearchItemResponse.self) { (response) in
                        if let error = response.error{
-                           completionHandler(NetworkResponse.Error(error: error.localizedDescription))
+                        completionHandler(NetworkResponse.Error(error: error.localizedDescription))
                                return
                        }
 
@@ -127,7 +127,7 @@ class ClipService{
     }
 
     func addSearchItem(searchItem:String){
-        guard let url = getURL(path: "/api/v1/clip/searchItem") else {
+        guard let url = getURL(path: "/api/v1/searchItem") else {
 
                        return
                    }

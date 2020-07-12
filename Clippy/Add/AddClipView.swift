@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import TTGTagCollectionView
+import UITextView_Placeholder
 
-class AddClipView: UIView {
+@IBDesignable class AddClipView: UIView {
 
     let playerContainerView = UIView()
     let selectVideoButton = UIButton()
     let addTitleTextView = UITextView()
     let addTagTextView = UITextView()
     let saveButton = UIButton()
-    var tagCollectionView:UICollectionView!
+    var tagCollectionView = TTGTextTagCollectionView()
     let editButton = UIButton()
+    let categoryTextView = UITextView()
 
     override init(frame: CGRect) {
       super.init(frame: frame)
@@ -25,21 +28,44 @@ class AddClipView: UIView {
         setUpSaveButton()
         setUpEditButton()
         setUpAddTitleTextView()
+        setUpAddCategoryTextView()
         setUpAddTagTextView()
         setUpTagCollectionView()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        setUpPlayerContainerView()
+            setUpSelectVideoButton()
+            setUpSaveButton()
+            setUpEditButton()
+            setUpAddTitleTextView()
+            setUpAddTagTextView()
+            setUpTagCollectionView()
     }
 
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
     }
 
+    func setGradientBackground() {
+        let colorTop =  UIColor.white.cgColor
+        let colorBottom = UIColor.red.cgColor
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.bounds
+
+        self.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
     private func setUpPlayerContainerView(){
-        playerContainerView.backgroundColor = .clear
+        playerContainerView.backgroundColor = .white
         playerContainerView.addCodeConstraints(parentView: self, constraints: [
             playerContainerView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             playerContainerView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor,constant: -30),
             playerContainerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30),
-            playerContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+            playerContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4)
         ])
     }
 
@@ -47,7 +73,7 @@ class AddClipView: UIView {
         selectVideoButton.setTitle("Select Video", for: .normal)
         selectVideoButton.setTitleColor(.blue, for: .normal)
         selectVideoButton.addCodeConstraints(parentView: self, constraints: [
-            selectVideoButton.topAnchor.constraint(equalTo: playerContainerView.bottomAnchor, constant: 15),
+            selectVideoButton.topAnchor.constraint(equalTo: playerContainerView.bottomAnchor, constant: 8),
             selectVideoButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
@@ -73,36 +99,58 @@ class AddClipView: UIView {
     private func setUpAddTitleTextView(){
 
         addTitleTextView.addCodeConstraints(parentView: self, constraints: [
-            addTitleTextView.topAnchor.constraint(equalTo: selectVideoButton.bottomAnchor, constant: 20),
+            addTitleTextView.topAnchor.constraint(equalTo: selectVideoButton.bottomAnchor, constant: 10),
             addTitleTextView.heightAnchor.constraint(equalToConstant: 40),
             addTitleTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             addTitleTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
+        addTitleTextView.placeholder = "Add Title"
+        addTitleTextView.placeholderColor = .gray
+
     }
+
+    private func setUpAddCategoryTextView(){
+
+        categoryTextView.textColor = .black
+         categoryTextView.addCodeConstraints(parentView: self, constraints: [
+             categoryTextView.topAnchor.constraint(equalTo: addTitleTextView.bottomAnchor, constant: 10),
+             categoryTextView.heightAnchor.constraint(equalToConstant: 40),
+             categoryTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 30),
+             categoryTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+         ])
+       categoryTextView.placeholder = "Add Category to clip"
+        addTagTextView.placeholderColor = .gray
+     }
 
     private func setUpAddTagTextView(){
         addTagTextView.backgroundColor = .lightGray
         addTagTextView.textColor = .black
          addTagTextView.addCodeConstraints(parentView: self, constraints: [
-             addTagTextView.topAnchor.constraint(equalTo: addTitleTextView.bottomAnchor, constant: 10),
+             addTagTextView.topAnchor.constraint(equalTo: categoryTextView.bottomAnchor, constant: 10),
              addTagTextView.heightAnchor.constraint(equalToConstant: 40),
              addTagTextView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 30),
              addTagTextView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30)
          ])
+        addTagTextView.placeholder = "Add Tags to clip"
+        addTagTextView.placeholderColor = .gray
      }
 
     private func setUpTagCollectionView(){
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        tagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        tagCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         tagCollectionView.addCodeConstraints(parentView: self, constraints: [
             tagCollectionView.topAnchor.constraint(equalTo: addTagTextView.bottomAnchor, constant: 10),
             tagCollectionView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 20),
             tagCollectionView.trailingAnchor.constraint(equalTo: safe().trailingAnchor, constant: -20),
             tagCollectionView.bottomAnchor.constraint(equalTo: editButton.topAnchor, constant: -10)
         ])
+
+         let height = tagCollectionView.heightAnchor.constraint(equalToConstant: 40)
+            height.priority = .defaultHigh
+            height.isActive = true
+            tagCollectionView.scrollDirection = .horizontal
+            tagCollectionView.numberOfLines = 1
+            tagCollectionView.backgroundColor = .clear
     }
+
+    
 
 }

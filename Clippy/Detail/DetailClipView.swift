@@ -126,7 +126,6 @@ import TTGTagCollectionView
 
 
     private func setUpClipTitleLabel(){
-        
         clipTitleLabel.addCodeConstraints(parentView: self, constraints: [
             clipTitleLabel.topAnchor.constraint(equalTo: playerContainerView.bottomAnchor, constant: 15),
             clipTitleLabel.centerXAnchor.constraint(equalTo: playerContainerView.centerXAnchor)

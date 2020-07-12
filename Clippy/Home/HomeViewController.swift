@@ -12,7 +12,6 @@ import AVFoundation
 
 class HomeViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate{
     var clips:[ClipWithID] = []
-    var categories = [("Sports",1),("Movies",2),("Television",3),("Internet",13),("Music",5),("Animals",7),("Video Games",6),("Other",4)]
     var icons:[UIImage?] =  [UIImage(named: "soccer"),UIImage(named:"film"),UIImage(named:"tv"),UIImage(named:"internet"),UIImage(named:"note"),UIImage(named:"cat"),UIImage(named:"joystick"),UIImage(named:"question-mark")]
     let homeTableView = UITableView()
     var nextURL = ""
@@ -116,6 +115,7 @@ class HomeViewController: UIViewController ,UITableViewDelegate,UITableViewDataS
 
     @objc func displayAddViewController(_ sender: UIBarButtonItem){
         let addVC = AddClipViewController()
+        self.modalPresentationStyle = .overCurrentContext
         self.present(addVC, animated: true, completion: nil)
     }
 
@@ -173,19 +173,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         let vc = CategoryViewController()
-        vc.title =  self.categories[indexPath.item].0
-        vc.categoryID =  self.categories[indexPath.item].1
+        vc.title =  Constants.categories[indexPath.item].0
+        vc.categoryID =  Constants.categories[indexPath.item].1
         self.navigationController?.pushViewController(vc, animated: true)
        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return Constants.categories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCell
-            cell.categoryTitle.text = self.categories[indexPath.item].0
+            cell.categoryTitle.text = Constants.categories[indexPath.item].0
         cell.categoryIcon.image = self.icons[indexPath.item]
         return cell
     }
