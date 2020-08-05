@@ -2,192 +2,155 @@
 //  HomeViewController.swift
 //  Clippy
 //
-//  Created by Ryan Gunn on 6/14/20.
+//  Created by Ryan Gunn on 7/14/20.
 //  Copyright © 2020 Ryan Gunn. All rights reserved.
 //
 
 import UIKit
-import Combine
-import AVFoundation
+import SwiftCSV
+import RealmSwift
 
-class HomeViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate{
-    var clips:[ClipWithID] = []
-    var icons:[UIImage?] =  [UIImage(named: "soccer"),UIImage(named:"film"),UIImage(named:"tv"),UIImage(named:"internet"),UIImage(named:"note"),UIImage(named:"cat"),UIImage(named:"joystick"),UIImage(named:"question-mark")]
-    let homeTableView = UITableView()
-    var nextURL = ""
-    var pageNumber = 1
-    var canFetchMoreResults = true
- 
+class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+
+
+    var homeView:HomeView!
+    let app = RealmApp(id: "shortyclip-sxkkl")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(displayAddViewController(_:)))
-        self.navigationItem.title = "ShortyClips"
-        self.view.backgroundColor = .clear
-        self.navigationItem.rightBarButtonItem  = addButton
-        self.navigationController?.navigationBar.barTintColor = UIColor.electricPurple
-        self.navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor: UIColor.white]
-        homeTableView.addCodeConstraints(parentView: self.view, constraints: [
-            homeTableView.topAnchor.constraint(equalTo: view.safe().topAnchor),
-            homeTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            homeTableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            homeTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 0)
-        ])
-        homeTableView.rowHeight = UITableView.automaticDimension
-        homeTableView.register(CollectionTableViewCell.self, forCellReuseIdentifier: "collectionCell")
-        homeTableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
-        homeTableView.estimatedRowHeight = 200
-        homeTableView.dataSource = self
-        homeTableView.delegate = self
+        homeView = HomeView(frame: view.frame)
+        view.addSubview(homeView)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        homeView.categoriesTableView.delegate = self
+        homeView.categoriesTableView.dataSource = self
+        print(homeView.topBarView.newClipBackground.frame)
+        homeView.topBarView.newClipBackground.layoutIfNeeded()
+         //print(homeView.topBarView.newClipBackground.frame)
+           // homeView.topBarView.newClipBackground.addTapGesture(target: self, selector: #selector(onSearchTapped(_:)))
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe))
+        swipe.direction = .left
+        homeView.exploreBackground.addGestureRecognizer(swipe)
 
-
-
-        ClipService.shared.getAllClips { (response) in
-                       DispatchQueue.main.async {
-                           switch response{
-                           case .Success(let newClips):
-                            let addClips = newClips as! ClipListResponse
-                            self.clips.append(contentsOf: addClips.results)
-                            self.homeTableView.reloadData()
-                            self.pageNumber += 1
-                           case .Error(let error):
-                               print(error)
-
-                        }
-                }
-        }
+//        ClipService.shared.getAllClips{ (response) in
+//                             DispatchQueue.main.async {
+//                                 switch response{
+//                                 case .Success(let newClips):
+//                                  let addClips = newClips as! ClipListResponse
+//                                  self.homeView.bindClip(clip: addClips.results[0])
+//                                 case .Error(let error):
+//                                     print(error)
+//
+//                              }
+//                      }
+//              }
+        //getRealm()
+//
 
     }
 
-    private func fetchDataFromIndex() {
-
-            ClipService.shared.getAllClips(pageNumber: pageNumber) { (response) in
-                               DispatchQueue.main.async {
-                                   switch response{
-                                   case .Success(let newClips):
-                                    let addClips = newClips as! ClipListResponse
-                                    self.clips.append(contentsOf: addClips.results)
-                                    self.homeTableView.reloadData()
-                                    self.pageNumber += 1
-                                    self.canFetchMoreResults = addClips.next != nil
-                                   case .Error(let error):
-                                       print(error)
-
-                                }
-                        }
+    func getRealm(){
+        let user = app.currentUser()
+        let partitionValue = "PUBLIC"
+        Realm.asyncOpen(configuration: user!.configuration(partitionValue: partitionValue),
+            callback: { (maybeRealm, error) in
+                guard error == nil else {
+                    fatalError("Failed to open realm: \(error!)")
                 }
-     }
+                guard let realm = maybeRealm else {
+                    fatalError("realm is nil!")
+                }
+                //self.addClips(realm: realm)
+               // self.printClips(realm: realm)
+                // realm opened
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let pan = scrollView.panGestureRecognizer
-//        let velocity = pan.velocity(in: scrollView).y
-//        if velocity < -5 {
-//            self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            self.navigationController?.setToolbarHidden(true, animated: true)
-//        } else if velocity > 5 {
-//            self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            self.navigationController?.setToolbarHidden(false, animated: true)
+            })
+    }
+
+//    func printClips(realm:Realm){
+//        let clips = realm.objects(Clip.self);
+//        print(clips.count)
+//        for clip in clips{
+//            print(clip)
 //        }
+//    }
+//
+//    func addClips(realm:Realm){
+//        var clipList:[Clip] = []
+//        do {
+//            let user = User()
+//            user.username = "ShortyClip"
+//            user.email = "shortyclips@test.com"
+//            try! realm.write {
+//                                 //Delete all objects from the realm.
+//                                realm.deleteAll();
+//                            }
+//
+//            let csv = try CSV(name: "Clips", extension: "csv", bundle: .main, delimiter: ",", encoding: .utf8, loadColumns: true)
+//
+//            for row in csv!.namedRows{
+//                let newClip = Clip()
+//                newClip.title = row["Title"]!
+//                newClip.clipCategory = Int(row["Category"]!)!
+//                newClip.clipURL = row["ClipURl"]!
+//                newClip.duration = Int(row["Duration"]!)!
+//                let tags = row["Tags"]!.components(separatedBy: ",")
+//                let tagList = List<String>()
+//                tagList.append(objectsIn: tags)
+//                newClip.tags = tagList
+//                clipList.append(newClip)
+//
+//
+//            }
+//
+//        } catch {
+//            print("error")
+//        }
+//
+//        do {
+//
+//                try realm.write {
+//                    realm.add(clipList, update: .modified)
+//                    }
+//                        }catch{
+//
+//                        }
+//
+//    }
+
+
+
+    @objc func onSearchTapped(_ guesture:UITapGestureRecognizer){
+        print("on tapped")
+        tabBarController?.selectedIndex = 1
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        homeTableView.layoutIfNeeded()
-        setTableViewBackgroundGradient(UIColor.electricPurple, UIColor.vividSkyBlue)
+
+
+    @objc func onSwipe(){
+        let vc = ExploreViewController()
+        vc.exploreType = .rand
+        vc.vcTitle = "Categories"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func setTableViewBackgroundGradient(_ topColor:UIColor, _ bottomColor:UIColor) {
-
-        let gradientBackgroundColors = [topColor.cgColor, bottomColor.cgColor]
-       //let gradientLocations = [0,1]
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradientBackgroundColors
-        gradientLayer.locations = [0,1]
-
-
-        gradientLayer.frame = self.view.frame
-        let backgroundView = UIView(frame: self.view.frame)
-        backgroundView.layer.insertSublayer(gradientLayer, at: 0)
-        homeTableView.backgroundView = backgroundView
-
-    }
-
-    @objc func displayAddViewController(_ sender: UIBarButtonItem){
-        let addVC = AddClipViewController()
-        self.modalPresentationStyle = .overCurrentContext
-        self.present(addVC, animated: true, completion: nil)
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }else{
-        return clips.count
-        }
+        return Constants.categories.count
       }
 
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "collectionCell", for: indexPath) as! CollectionTableViewCell
-
-            cell.collectionView.delegate = self
-            cell.collectionView.dataSource = self
-
-                   return cell
-        }else{
-            let clip = self.clips[indexPath.row]
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
-                
-                   cell.bindCell(clip: clip)
-                   return cell
-        }
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoryTableViewCell
+        cell.categoryTitleLabel.text = Constants.categories[indexPath.row].0
+        return cell
       }
 
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailClipViewController()
-        detailVC.clip = clips[indexPath.row]
-        self.navigationController?.pushViewController(detailVC, animated: true)
+        let vc = ExploreViewController()
+        vc.vcTitle = Constants.categories[indexPath.row].0
+        vc.vcSubTitle = "Category"
+        vc.exploreType = .category(categoryID: Constants.categories[indexPath.row].1)
+        self.navigationController?.pushViewController(vc, animated: true)
          tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-         if (clips.count - indexPath.row) == Constants.FetchThreshold && canFetchMoreResults {
-             fetchDataFromIndex()
-         }
-     }
-
 
 }
-
-extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2.5, height: collectionView.frame.width/2)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
-        let vc = CategoryViewController()
-        vc.title =  Constants.categories[indexPath.item].0
-        vc.categoryID =  Constants.categories[indexPath.item].1
-        self.navigationController?.pushViewController(vc, animated: true)
-       
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constants.categories.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCell
-            cell.categoryTitle.text = Constants.categories[indexPath.item].0
-        cell.categoryIcon.image = self.icons[indexPath.item]
-        return cell
-    }
-}
-

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoriteVeiw" customModule="Clippy" customModuleProvider="target">
+            <connections>
+                <outlet property="clipsButton" destination="sCd-aN-BFv" id="nUC-vD-hyI"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Zl5-gW-6w5"/>
+                <outlet property="favoriteItemsTableView" destination="O3e-Hu-x6F" id="O8n-AQ-wf0"/>
+                <outlet property="tagsButton" destination="iki-be-TYy" id="Cg9-mZ-dYG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2r-mM-W2O">
+                    <rect key="frame" x="0.0" y="44" width="414" height="90"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites &gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdC-iu-WJQ">
+                            <rect key="frame" x="20" y="15" width="118.5" height="26.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="180" translatesAutoresizingMaskIntoConstraints="NO" id="1XQ-Zz-TYJ">
+                            <rect key="frame" x="20" y="56.5" width="374" height="30"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCd-aN-BFv">
+                                    <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+                                    <state key="normal" title="Clips"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iki-be-TYy">
+                                    <rect key="frame" x="277" y="0.0" width="97" height="30"/>
+                                    <state key="normal" title="Tags"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="1XQ-Zz-TYJ" firstAttribute="top" secondItem="cdC-iu-WJQ" secondAttribute="bottom" constant="15" id="B7R-6N-tWX"/>
+                        <constraint firstItem="1XQ-Zz-TYJ" firstAttribute="leading" secondItem="Z2r-mM-W2O" secondAttribute="leading" constant="20" id="Bcn-uB-SrJ"/>
+                        <constraint firstAttribute="height" constant="90" id="FOs-UU-Hvq"/>
+                        <constraint firstAttribute="trailing" secondItem="1XQ-Zz-TYJ" secondAttribute="trailing" constant="20" id="QFF-hn-DeI"/>
+                        <constraint firstItem="cdC-iu-WJQ" firstAttribute="leading" secondItem="Z2r-mM-W2O" secondAttribute="leading" constant="20" id="qAh-fc-YDg"/>
+                        <constraint firstItem="cdC-iu-WJQ" firstAttribute="top" secondItem="Z2r-mM-W2O" secondAttribute="top" constant="15" id="wEl-Sg-zfE"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O3e-Hu-x6F">
+                    <rect key="frame" x="0.0" y="134" width="414" height="728"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CJR-X9-tEp"/>
+                <constraint firstItem="O3e-Hu-x6F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="D6o-va-YJ0"/>
+                <constraint firstItem="O3e-Hu-x6F" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="DKc-nU-3eW"/>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Lu2-oB-rN4"/>
+                <constraint firstItem="O3e-Hu-x6F" firstAttribute="top" secondItem="Z2r-mM-W2O" secondAttribute="bottom" id="Z83-JO-nC2"/>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ZYX-3a-EDb"/>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="dY6-PL-tUL"/>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="fxY-es-bdj"/>
+                <constraint firstItem="O3e-Hu-x6F" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="nhe-76-0Gc"/>
+                <constraint firstItem="Z2r-mM-W2O" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vHY-sc-PZ7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="50.724637681159422" y="91.741071428571431"/>
+        </view>
+    </objects>
+</document>

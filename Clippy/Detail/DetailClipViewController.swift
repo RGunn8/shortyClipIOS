@@ -14,8 +14,10 @@ import LinkPresentation
 import TTGTagCollectionView
 import Photos
 
-class DetailClipViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,TTGTextTagCollectionViewDelegate {
+class DetailClipViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,TTGTextTagCollectionViewDelegate {
+
      var clip:ClipWithID? = nil
+    var relatedClip:[ClipWithID] = []
     var player = AVQueuePlayer.init()
     var playerLayer = AVPlayerLayer()
     var detailView = DetailClipView()
@@ -28,8 +30,31 @@ class DetailClipViewController: UIViewController,UICollectionViewDataSource,UICo
         try! AVAudioSession.sharedInstance().setCategory(.playback, options: [])
        detailView = DetailClipView(frame: self.view.frame)
         self.view.addSubview(detailView)
+        ClipService.shared.getClipDetail(clipdID: clip!.id) { (response) in
+            DispatchQueue.main.async {
+                switch response{
+                    case .Success(let newClips):
+                        let clipDetail = newClips as! ClipDetailResponse
+                        self.detailView.bindClip(clip: clipDetail.clip)
+                        if let relatedClips = clipDetail.relatedClip{
+                        if relatedClips.isEmpty{
+                            self.detailView.releatedClipTableView.isHidden = true
+                        }else{
+                        self.relatedClip.append(contentsOf:relatedClips)
+                        self.detailView.releatedClipTableView.reloadData()
+                        }
+
+                    }
+
+                    case .Error(let error):
+                        print(error)
+
+                    }
+                }
+        }
         setUpVidoePlayer()
-        detailView.bindClip(clip: clip!)
+        detailView.releatedClipTableView.delegate = self
+        detailView.releatedClipTableView.dataSource = self
         //detailView.clipTitleLabel.text = clip?.title
         detailView.shareButton.addTarget(self, action: #selector(shareVidoe(_:)), for: .touchUpInside)
         detailView.playButton.addTarget(self, action: #selector(playVideo(_:)), for: .touchUpInside)
@@ -40,10 +65,7 @@ class DetailClipViewController: UIViewController,UICollectionViewDataSource,UICo
         detailView.playerContainerView.isUserInteractionEnabled = true
         detailView.playerContainerView.addGestureRecognizer(tap)
         detailView.tagCollectionView.delegate = self
-//        detailView.tagCollectionView.delegate = self
-//        detailView.tagCollectionView.dataSource = self
-        //detailView.tagCollectionView.reloadData()
-        //detailView.downloadButton.addTarget(self, action: #selector(downloadButtonTapped(_:)), for: .touchUpInside)
+
     }
 
     func setUpVidoePlayer(){
@@ -164,37 +186,26 @@ class DetailClipViewController: UIViewController,UICollectionViewDataSource,UICo
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let tags = clip?.tags {
-            return tags.count
-        }else{
-            return 0
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagCollectionViewCell
-        if let tags = clip?.tags{
-            let tag = tags[indexPath.row]
-            cell.titleLabel.text = "#\(tag)"
-        }
-
-             return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: collectionView.frame.width/3.5, height: collectionView.frame.width/2)
-     }
-
     func textTagCollectionView(_ textTagCollectionView: TTGTextTagCollectionView!, canTapTag tagText: String!, at index: UInt, currentSelected: Bool, tagConfig config: TTGTextTagConfig!) -> Bool {
 
         if let tags = clip?.tags{
-            let vc = CategoryViewController()
-                   vc.getCategory = false
-            vc.tag = tags[Int(index)]
-                   self.navigationController?.pushViewController(vc, animated: true)
-            textTagCollectionView.setTagAt(index, selected: false)
-            textTagCollectionView.setNeedsLayout()
+//
+//            let vc = CategoryViewController()
+//                   vc.getCategory = false
+//            vc.tag = tags[Int(index)]
+//                   self.navigationController?.pushViewController(vc, animated: true)
+//            textTagCollectionView.setTagAt(index, selected: false)
+//            textTagCollectionView.setNeedsLayout()
+
+            let vc = ExploreViewController()
+            let tag = tags[Int(index)]
+                   vc.vcTitle = tag
+                   vc.vcSubTitle = "Tag"
+            vc.exploreType = .tag(tagString: tag)
+            self.present(vc, animated: true, completion: nil)
+
+                textTagCollectionView.setTagAt(index, selected: false)
+                textTagCollectionView.setNeedsLayout()
             return false
 
         }
@@ -202,6 +213,29 @@ class DetailClipViewController: UIViewController,UICollectionViewDataSource,UICo
         //textTagCollectionView.setTagAt(index, selected: false)
         return true
     }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return relatedClip.count
+      }
+
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let clip = self.relatedClip[indexPath.row]
+                         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RelatedClipTableViewCell
+                         cell.bindCell(clip: clip)
+            return cell
+      }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Related Clips"
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         let detailVC = DetailClipViewController()
+         detailVC.clip = relatedClip[indexPath.row]
+        // self.present(detailVC, animated: true, completion: nil)
+         self.navigationController?.pushViewController(detailVC, animated: true)
+          tableView.deselectRow(at: indexPath, animated: true)
+     }
 
     
 

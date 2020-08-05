@@ -12,6 +12,8 @@ pod 'UITextView+Placeholder'
  pod 'Cloudinary', '~> 2.0'
 pod 'Alamofire', '~> 5.2'
 pod "TTGTagCollectionView"
+ pod 'RealmSwift', '=10.0.0-beta.2'
+pod "SwiftCSV"
 
   target 'ClippyTests' do
     inherit! :search_paths
@@ -19,3 +21,5 @@ pod "TTGTagCollectionView"
   end
 
 end
+
+

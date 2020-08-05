@@ -24,6 +24,11 @@ import TTGTagCollectionView
     let fullScreenButton = UIButton()
     let buttonStackView = UIStackView()
     let favButton = UIButton()
+    let topTitleView = UIView()
+    let topTitleLabel = UILabel()
+    let bottomBackground = UIView()
+    let clipInfoBackgroundView = UIView()
+    let releatedClipTableView = UITableView()
 
 
       override init(frame: CGRect) {
@@ -37,25 +42,26 @@ import TTGTagCollectionView
         clipTitleLabel.text = "Stephen a smith we don't care"
         clipUserLabel.text = "Created by Test"
         clipDateTextLabel.text = "Date CREATEd = June 23,2020"
+        topTitleLabel.text = "Stephen A smith does something crazy"
        
     }
 
     func setUpDetailView(){
-        self.backgroundColor =  UIColor(red: 253.0/255.0, green: 33.0/255.0, blue: 33.0/250.0, alpha:1.0 )
+    setupTopTitleView()
+    setupTopTitleLabel()
     setUpPlayerContainerView()
         setUpPlayerOverlay()
         setUpPlayButton()
         setUpRewindButton()
         setUpFullScreenButton()
-         setUpClipTitleLabel()
+        // setUpClipTitleLabel()
         setUpButtonStackView()
+        setupBottomBackgroundView()
         addClipInfoView()
         setUpUserLabel()
         setUDateLabel()
         setUpTagCollectionView()
-           //setUpShareButton()
-//         setUpDownloadButton()
-           //setUpTagCollectionView()
+        setupRelatedTableView()
     }
 
     func bindClip(clip:ClipWithID){
@@ -65,6 +71,7 @@ import TTGTagCollectionView
         if let tags = clip.tags {
              tagCollectionView.addTags(tags)
         }
+        topTitleLabel.text = clip.title
 
     }
 
@@ -72,12 +79,41 @@ import TTGTagCollectionView
         super.init(coder: aDecoder)
       }
 
+    func setupTopTitleView(){
+        topTitleView.addCodeConstraints(parentView: self, constraints: [
+            topTitleView.topAnchor.constraint(equalTo: safe().topAnchor),
+            topTitleView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            topTitleView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            topTitleView.heightAnchor.constraint(equalToConstant: 100)
+        ])
+
+        topTitleView.backgroundColor = .electricPurple
+
+
+    }
+
+    func setupTopTitleLabel(){
+        topTitleLabel.addCodeConstraints(parentView: topTitleView, constraints: [
+            topTitleLabel.leadingAnchor.constraint(equalTo: topTitleView.leadingAnchor,constant: 5),
+                      topTitleLabel.trailingAnchor.constraint(equalTo: topTitleView.trailingAnchor,constant: -5),
+                      topTitleLabel.centerYAnchor.constraint(equalTo: topTitleView.centerYAnchor)
+              ])
+
+        topTitleLabel.sizeToFit()
+        topTitleLabel.textColor = .white
+        topTitleLabel.numberOfLines = 0
+        topTitleLabel.font = UIFont.systemFont(ofSize: 18)
+        topTitleLabel.textAlignment = .center
+        topTitleLabel.lineBreakMode = .byWordWrapping
+
+    }
+
       private func setUpPlayerContainerView(){
           playerContainerView.backgroundColor = .white
           playerContainerView.addCodeConstraints(parentView: self, constraints: [
               playerContainerView.leadingAnchor.constraint(equalTo: safe().leadingAnchor,constant: 30),
               playerContainerView.trailingAnchor.constraint(equalTo: safe().trailingAnchor,constant: -30),
-              playerContainerView.topAnchor.constraint(equalTo: safe().topAnchor, constant: 30),
+              playerContainerView.topAnchor.constraint(equalTo: topTitleView.bottomAnchor, constant: 30),
               playerContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
           ])
       }
@@ -140,7 +176,7 @@ import TTGTagCollectionView
         buttonStackView.addCodeConstraints(parentView: self, constraints: [
             buttonStackView.leadingAnchor.constraint(equalTo: playerContainerView.leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: playerContainerView.trailingAnchor),
-            buttonStackView.topAnchor.constraint(equalTo: clipTitleLabel.bottomAnchor,constant: 10)
+            buttonStackView.topAnchor.constraint(equalTo: playerContainerView.bottomAnchor,constant: 10)
         ])
 
         buttonStackView.axis = .horizontal
@@ -157,16 +193,16 @@ import TTGTagCollectionView
         buttonStackView.distribution = .fillEqually
     }
 
-
-
     private func addClipInfoView(){
         clipInfoView.backgroundColor = .white
-        clipInfoView.addCodeConstraints(parentView: self, constraints: [
-            clipInfoView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 30),
-            clipInfoView.leadingAnchor.constraint(equalTo: safe().leadingAnchor, constant: 15),
-            clipInfoView.trailingAnchor.constraint(equalTo: safe().trailingAnchor, constant: -15),
+        clipInfoView.addCodeConstraints(parentView: bottomBackground, constraints: [
+            clipInfoView.topAnchor.constraint(equalTo: bottomBackground.topAnchor, constant: 15),
+            clipInfoView.leadingAnchor.constraint(equalTo: bottomBackground.leadingAnchor, constant: 15),
+            clipInfoView.trailingAnchor.constraint(equalTo: bottomBackground.trailingAnchor, constant: -15),
 
         ])
+
+        clipInfoView.layer.cornerRadius = 15
     }
 
     private func setUpUserLabel(){
@@ -176,6 +212,7 @@ import TTGTagCollectionView
             clipUserLabel.trailingAnchor.constraint(equalTo: clipInfoView.trailingAnchor,constant: -10)
         ])
         clipUserLabel.textAlignment = .center
+    
     }
 
     private func setUDateLabel(){
@@ -200,21 +237,23 @@ import TTGTagCollectionView
              tagCollectionView.topAnchor.constraint(equalTo: clipDateTextLabel.bottomAnchor, constant: 10),
                        tagCollectionView.leadingAnchor.constraint(equalTo: clipInfoView.leadingAnchor,constant: 5),
                        tagCollectionView.trailingAnchor.constraint(equalTo: clipInfoView.trailingAnchor,constant: -5),
-                       tagCollectionView.bottomAnchor.constraint(equalTo: clipInfoView.bottomAnchor, constant: -20)
+                       tagCollectionView.bottomAnchor.constraint(equalTo: clipInfoView.bottomAnchor, constant: -20),
+                       tagCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
 
         let height = tagCollectionView.heightAnchor.constraint(equalToConstant: 40)
         height.priority = .defaultHigh
         height.isActive = true
-
+        tagCollectionView.alignment = .center
         tagCollectionView.scrollDirection = .horizontal
         tagCollectionView.numberOfLines = 1
-//        tagCollectionView.isPagingEnabled = true
-//        tagCollectionView.isScrollEnabled = true
         tagCollectionView.backgroundColor = .clear
-
-        //clipTagsLabel.textAlignment = .center
-//       clipInfoView.bottomAnchor.constraint(equalTo: clipTagsLabel.bottomAnchor, constant: -20).isActive = true
+        let config = TTGTextTagConfig()
+               config.backgroundColor = .white
+               config.shadowColor = .white
+               config.textColor = .black
+               config.textFont = UIFont.systemFont(ofSize: 16)
+               tagCollectionView.defaultConfig = config
     }
 
       private func setUpShareButton(){
@@ -235,5 +274,27 @@ import TTGTagCollectionView
             ])
         }
 
+    private func setupBottomBackgroundView(){
+        bottomBackground.addCodeConstraints(parentView: self, constraints: [
+            bottomBackground.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor,constant: 10),
+            bottomBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            bottomBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bottomBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
 
+        bottomBackground.backgroundColor = .red
+    }
+
+    func setupRelatedTableView(){
+        releatedClipTableView.addCodeConstraints(parentView: bottomBackground, constraints: [
+            releatedClipTableView.topAnchor.constraint(equalTo: clipInfoView.bottomAnchor, constant: 10),
+            releatedClipTableView.bottomAnchor.constraint(equalTo: safe().bottomAnchor,constant: -10),
+            releatedClipTableView.leadingAnchor.constraint(equalTo: safe().leadingAnchor),
+            releatedClipTableView.trailingAnchor.constraint(equalTo: safe().trailingAnchor)
+        ])
+
+        releatedClipTableView.rowHeight = UITableView.automaticDimension
+                      releatedClipTableView.register(RelatedClipTableViewCell.self, forCellReuseIdentifier: "cell")
+                      releatedClipTableView.estimatedRowHeight = 200
+    }
 }

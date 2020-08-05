@@ -157,8 +157,6 @@ class CollectionTableViewCell:UITableViewCell {
 
         collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = false
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
         collectionView.addCodeConstraints(parentView: self, constraints: [
             collectionView.topAnchor.constraint(equalTo: safe().topAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: safe().leadingAnchor, constant: 10),
@@ -170,7 +168,7 @@ class CollectionTableViewCell:UITableViewCell {
         let constraint = collectionView.heightAnchor.constraint(equalToConstant: 200)
             constraint.priority = .defaultHigh
             constraint.isActive = true
-         //collectionView.heightAnchor.constraint(equalToConstant: 205)
+
 
 
     }
@@ -180,24 +178,30 @@ class CollectionTableViewCell:UITableViewCell {
     }
 }
 
-//extension CollectionTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.width/2.5, height: collectionView.frame.width/2)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        //collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
-//        print(indexPath.row)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return categories.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCell
-//            cell.categoryTitle.text = self.categories[indexPath.item].0
-//        return cell
-//    }
-//}
+class CategoryTableViewCell: UITableViewCell {
+
+    let categoryTitleLabel = UILabel()
+
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style,reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .oxfordBlue
+        categoryTitleLabel.addCodeConstraints(parentView: self, constraints: [
+            categoryTitleLabel.leadingAnchor.constraint(equalTo: safe().leadingAnchor, constant: 5),
+            categoryTitleLabel.topAnchor.constraint(equalTo: safe().topAnchor, constant: 5)
+        ])
+        categoryTitleLabel.textColor = .white
+        categoryTitleLabel.font = categoryTitleLabel.font.withSize(25)
+
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 

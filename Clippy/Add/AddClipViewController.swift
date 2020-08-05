@@ -39,6 +39,8 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
         homeView.selectVideoButton.addTarget(self, action: #selector(self.openVideoGallery(_:)), for: .touchUpInside)
         homeView.saveButton.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
         homeView.editButton.addTarget(self,action: #selector(editButtonTapped(_:)), for: .touchUpInside)
+        homeView.addTitleTextView.delegate = self
+        homeView.categoryTextView.delegate = self
         setUpVidoePlayer()
         setTableViewBackgroundGradient()
         createPickerView()
@@ -48,27 +50,37 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
         if let videoURL = videoURL{
             if UIVideoEditorController.canEditVideo(atPath: videoURL.absoluteString) {
                               let editController = UIVideoEditorController()
-                editController.videoPath = videoURL.path
+                        editController.videoPath = videoURL.path
                               editController.delegate = self
                               present(editController, animated:true)
-                          }
+                }
         }
 
     }
 
+    func textViewDidChange(_ textFiled: UITextView){
+        displaySaveButton()
+
+    }
+
+    func clipCanBeSAve() -> Bool {
+        return videoURL != nil && !homeView.addTitleTextView.text.isEmpty && !homeView.categoryTextView.text.isEmpty && vidoeDuration > 0 && vidoeDuration >= 20
+    }
+
+    func displaySaveButton(){
+        if clipCanBeSAve() {
+            homeView.saveButton.isHidden = false
+        }else {
+            homeView.saveButton.isHidden = true
+        }
+    }
 
     func setTableViewBackgroundGradient() {
-
         let gradientBackgroundColors = [UIColor.white.cgColor, UIColor.red.cgColor]
-       //let gradientLocations = [0,1]
-
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = gradientBackgroundColors
         gradientLayer.locations = [0,1]
-
-
         gradientLayer.frame = self.view.frame
-        let backgroundView = UIView(frame: self.view.frame)
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         //homeTableView.backgroundView = backgroundView
 
@@ -85,10 +97,9 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
                 return
             }
             DispatchQueue.main.async {
-                self.clipURL =  response!.resultJson["secure_url"] as! String
+                self.clipURL =  response!.resultJson["secure_url"] as? String
                 self.addClip()
             }
-
         }
 
     }
@@ -110,8 +121,13 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if textView != homeView.addTagTextView{
+              if(text == "\n") {
+                    textView.resignFirstResponder()
+            }
+            return true
+        }
          if(text == "\n") {
-//            tags.append(homeView.addTagTextView.text)
             homeView.tagCollectionView.addTag("\(homeView.addTagTextView.text ?? "") X")
             textView.text = ""
              textView.resignFirstResponder()
@@ -166,23 +182,13 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
         let durationTime = CMTimeGetSeconds(duration)
         vidoeDuration = Int(durationTime)
         self.dismiss(animated: true, completion: nil)
+        self.homeView.editButton.isHidden = false
           playVideo()
     }
 
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return tags.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagCollectionViewCell
-//        cell.titleLabel.text = tags[indexPath.row]
-//        return cell
-//
-//    }
 
     func videoEditorController(_ editor: UIVideoEditorController,
          didSaveEditedVideoToPath editedVideoPath: String) {
-        // dismiss(animated:true)
         print(editedVideoPath)
       }
 
@@ -233,7 +239,6 @@ class AddClipViewController: UIViewController, UITextViewDelegate,UIImagePickerC
     func textTagCollectionView(_ textTagCollectionView: TTGTextTagCollectionView!, canTapTag tagText: String!, at index: UInt, currentSelected: Bool, tagConfig config: TTGTextTagConfig!) -> Bool {
         textTagCollectionView.removeTag(at: index)
         textTagCollectionView.reload()
-
             return false
 
     }

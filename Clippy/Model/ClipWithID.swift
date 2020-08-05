@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 
 struct ClipWithID:Codable {
@@ -35,22 +36,82 @@ struct ClipWithID:Codable {
         }
     }
 
-    func getTagLabel() -> String{
+    func getTagLabel() -> [String]{
         guard let  tags = tags else {
-            return ""
+            return []
         }
         if tags.isEmpty {
-            return ""
+            return []
         }else{
-            var clipTag = ""
+            var clipTag:[String] = []
             for tag in tags {
-                clipTag += "#\(tag) "
+                clipTag.append("#\(tag)")
             }
             return clipTag
         }
     }
 
 }
+
+class User : Object {
+    @objc dynamic var _id = ObjectId.generate()
+    @objc dynamic var username = ""
+    @objc dynamic var email = ""
+     dynamic var favTags:List<String> = List<String>()
+     dynamic var favClips:List<Clip> = List<Clip>()
+//    @objc dynamic var syncUser:RLMSyncUser? = nil
+    let clips = List<Clip>()
+
+    override static func primaryKey() -> String? {
+           return "_id"
+       }
+
+}
+
+class Clip :Object {
+    @objc dynamic var _id:ObjectId = ObjectId.generate()
+     @objc dynamic var title = ""
+     @objc dynamic var duration = 0
+     @objc dynamic var likes = 0
+     @objc dynamic var clipURL = ""
+    @objc dynamic var _partitionKey = "PUBLIC"
+    @objc dynamic var username = ""
+    @objc dynamic var userId:ObjectId? = nil
+     @objc dynamic var created:Date = Date()
+     @objc dynamic var currentUserLikes:Bool = false
+     @objc dynamic var clipCategory:Int = 0
+     var tags:List<String> = List<String>()
+
+    override static func primaryKey() -> String? {
+           return "_id"
+       }
+
+    func convertCreatedDateToString() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMMM dd,yyyy"
+        return dateFormatterPrint.string(from: created)
+
+    }
+
+    func getTagLabel() -> [String]{
+
+        if tags.isEmpty {
+            return []
+        }else{
+            var clipTag:[String] = []
+            for tag in tags {
+                clipTag.append("#\(tag)")
+            }
+            return clipTag
+        }
+    }
+
+}
+
+
 
 struct ClipPost:Codable {
     let title:String
@@ -67,6 +128,11 @@ struct ClipListResponse:Codable {
     let next:String?
     let previous:String?
     let results:[ClipWithID]
+}
+
+struct ClipDetailResponse:Codable {
+    let clip:ClipWithID
+    let relatedClip:[ClipWithID]?
 }
 
 struct TrendingClipResponse:Codable {

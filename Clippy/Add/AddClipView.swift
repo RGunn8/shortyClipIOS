@@ -31,6 +31,7 @@ import UITextView_Placeholder
         setUpAddCategoryTextView()
         setUpAddTagTextView()
         setUpTagCollectionView()
+        
     }
 
     override func prepareForInterfaceBuilder() {
@@ -42,6 +43,8 @@ import UITextView_Placeholder
             setUpAddTagTextView()
             setUpTagCollectionView()
     }
+
+
 
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
@@ -85,6 +88,7 @@ import UITextView_Placeholder
             saveButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -50),
               saveButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
           ])
+        saveButton.isHidden = true
       }
 
     private func setUpEditButton(){
@@ -94,10 +98,12 @@ import UITextView_Placeholder
             editButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -10),
             editButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
+
+        editButton.isHidden = true
     }
 
     private func setUpAddTitleTextView(){
-
+        addTitleTextView.returnKeyType = UIReturnKeyType.done
         addTitleTextView.addCodeConstraints(parentView: self, constraints: [
             addTitleTextView.topAnchor.constraint(equalTo: selectVideoButton.bottomAnchor, constant: 10),
             addTitleTextView.heightAnchor.constraint(equalToConstant: 40),
@@ -106,7 +112,7 @@ import UITextView_Placeholder
         ])
         addTitleTextView.placeholder = "Add Title"
         addTitleTextView.placeholderColor = .gray
-
+        addTitleTextView.textColor = .black
     }
 
     private func setUpAddCategoryTextView(){
@@ -125,6 +131,7 @@ import UITextView_Placeholder
     private func setUpAddTagTextView(){
         addTagTextView.backgroundColor = .lightGray
         addTagTextView.textColor = .black
+        addTagTextView.returnKeyType = UIReturnKeyType.done
          addTagTextView.addCodeConstraints(parentView: self, constraints: [
              addTagTextView.topAnchor.constraint(equalTo: categoryTextView.bottomAnchor, constant: 10),
              addTagTextView.heightAnchor.constraint(equalToConstant: 40),

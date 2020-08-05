@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		72F54A2E5D5899DB6E138CE3 /* Pods_Clippy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB0C7AA787922241892B0CF /* Pods_Clippy.framework */; };
 		A4B7073336E03FC3E74D3599 /* Pods_ClippyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BB460E3A67E5DD9B76E0A6 /* Pods_ClippyTests.framework */; };
+		EB191DC024CDDF8A00AD1156 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB191DBF24CDDF8A00AD1156 /* UserService.swift */; };
+		EB191DC224CDE0E700AD1156 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB191DC124CDE0E700AD1156 /* UserModel.swift */; };
 		EB5BF5C6248BDC5200882E7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C5248BDC5200882E7D /* AppDelegate.swift */; };
 		EB5BF5C8248BDC5200882E7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C7248BDC5200882E7D /* SceneDelegate.swift */; };
 		EB5BF5CA248BDC5200882E7D /* AddClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5C9248BDC5200882E7D /* AddClipViewController.swift */; };
@@ -19,10 +21,26 @@
 		EB5BF5EA248BFB2C00882E7D /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */; };
 		EB5BF5ED248C0BA000882E7D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */; };
 		EB5BF5EF248C0BA700882E7D /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5BF5EE248C0BA700882E7D /* AVKit.framework */; };
+		EB5F4F1D24DA6C680046D58C /* ClipRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5F4F1C24DA6C680046D58C /* ClipRealmService.swift */; };
+		EB601AFA24D867F400218E92 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB601AF924D867F400218E92 /* UserInfoView.xib */; };
+		EB601AFC24D86CFC00218E92 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601AFB24D86CFC00218E92 /* UserInfoView.swift */; };
+		EB601AFF24D8707600218E92 /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB601AFE24D8707600218E92 /* FavoriteView.xib */; };
+		EB601B0124D875BA00218E92 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601B0024D875BA00218E92 /* FavoriteView.swift */; };
+		EB601B0324D877C300218E92 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601B0224D877C300218E92 /* FavoriteViewController.swift */; };
+		EB601B0524D87DDD00218E92 /* SignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB601B0424D87DDD00218E92 /* SignUpView.xib */; };
+		EB606F2D24C7845200E1C8DD /* Clips.csv in Resources */ = {isa = PBXBuildFile; fileRef = EB606F2C24C7845100E1C8DD /* Clips.csv */; };
+		EB60AE7024BE22BE0048D4A7 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60AE6F24BE22BE0048D4A7 /* TopBarView.swift */; };
+		EB60AE7224BE239D0048D4A7 /* TopBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB60AE7124BE239D0048D4A7 /* TopBarView.xib */; };
+		EB60AE7424BE27420048D4A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60AE7324BE27420048D4A7 /* HomeView.swift */; };
+		EB60AE7624BE2BE50048D4A7 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB60AE7524BE2BE50048D4A7 /* HomeView.xib */; };
+		EB60AE7824BE3A020048D4A7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60AE7724BE3A020048D4A7 /* HomeViewController.swift */; };
+		EB60AE7A24BE64FF0048D4A7 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60AE7924BE64FF0048D4A7 /* ExploreView.swift */; };
 		EB63AC4924B68A420088C944 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63AC4824B68A420088C944 /* CategoryViewController.swift */; };
 		EB63AC4B24B6DCF90088C944 /* DetailClipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */; };
 		EB6722AF249925D400B56812 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722AE249925D400B56812 /* NetworkManger.swift */; };
 		EB6722B1249937B600B56812 /* ClipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6722B0249937B600B56812 /* ClipService.swift */; };
+		EB69099224BBFB9C00BA392D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB69099124BBFB9C00BA392D /* SignUpViewController.swift */; };
+		EB69099424BC02D900BA392D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB69099324BC02D900BA392D /* SignUpView.swift */; };
 		EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D283B2497D706000A17BA /* DetailClipView.swift */; };
 		EB6D283F2497D91A000A17BA /* DetailClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */; };
 		EB6D2841249850A1000A17BA /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */; };
@@ -30,9 +48,11 @@
 		EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */; };
 		EB70EE5F24BA2D730025C54C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB70EE5E24BA2D730025C54C /* SearchView.swift */; };
 		EB8446A024AF0061005B50FA /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84469F24AF0061005B50FA /* CategoryCell.swift */; };
+		EBAFA06524CA4D6100BFE22D /* RelatedClipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAFA06424CA4D6100BFE22D /* RelatedClipTableViewCell.swift */; };
+		EBBBC10324C621D80056218F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBBBC10224C621D80056218F /* GoogleService-Info.plist */; };
 		EBBFB6C424B8C240004E0423 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBFB6C324B8C240004E0423 /* UserViewController.swift */; };
 		EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */; };
-		EBEA0430249709C000D8DBB1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042F249709C000D8DBB1 /* HomeViewController.swift */; };
+		EBEA0430249709C000D8DBB1 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA042F249709C000D8DBB1 /* ExploreViewController.swift */; };
 		EBEA04332497118600D8DBB1 /* ClipWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA04322497118600D8DBB1 /* ClipWithID.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +73,8 @@
 		60BB460E3A67E5DD9B76E0A6 /* Pods_ClippyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClippyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B5BF1935A8071185FAEF71 /* Pods-ClippyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClippyTests.debug.xcconfig"; path = "Target Support Files/Pods-ClippyTests/Pods-ClippyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1D37A4783FB7BFEE98DC93 /* Pods-Clippy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clippy.debug.xcconfig"; path = "Target Support Files/Pods-Clippy/Pods-Clippy.debug.xcconfig"; sourceTree = "<group>"; };
+		EB191DBF24CDDF8A00AD1156 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		EB191DC124CDE0E700AD1156 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EB5BF5C2248BDC5200882E7D /* Clippy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clippy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5BF5C5248BDC5200882E7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB5BF5C7248BDC5200882E7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,10 +89,26 @@
 		EB5BF5E9248BFB2C00882E7D /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		EB5BF5EC248C0BA000882E7D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB5BF5EE248C0BA700882E7D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		EB5F4F1C24DA6C680046D58C /* ClipRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRealmService.swift; sourceTree = "<group>"; };
+		EB601AF924D867F400218E92 /* UserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		EB601AFB24D86CFC00218E92 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		EB601AFE24D8707600218E92 /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
+		EB601B0024D875BA00218E92 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		EB601B0224D877C300218E92 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		EB601B0424D87DDD00218E92 /* SignUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpView.xib; sourceTree = "<group>"; };
+		EB606F2C24C7845100E1C8DD /* Clips.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clips.csv; sourceTree = "<group>"; };
+		EB60AE6F24BE22BE0048D4A7 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		EB60AE7124BE239D0048D4A7 /* TopBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopBarView.xib; sourceTree = "<group>"; };
+		EB60AE7324BE27420048D4A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EB60AE7524BE2BE50048D4A7 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		EB60AE7724BE3A020048D4A7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EB60AE7924BE64FF0048D4A7 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		EB63AC4824B68A420088C944 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailClipView.xib; sourceTree = "<group>"; };
 		EB6722AE249925D400B56812 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
 		EB6722B0249937B600B56812 /* ClipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipService.swift; sourceTree = "<group>"; };
+		EB69099124BBFB9C00BA392D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		EB69099324BC02D900BA392D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		EB6D283B2497D706000A17BA /* DetailClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClipView.swift; sourceTree = "<group>"; };
 		EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClipViewController.swift; sourceTree = "<group>"; };
 		EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
@@ -78,9 +116,11 @@
 		EB6EFBA8249C8BB800AEB16A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB70EE5E24BA2D730025C54C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EB84469F24AF0061005B50FA /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		EBAFA06424CA4D6100BFE22D /* RelatedClipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedClipTableViewCell.swift; sourceTree = "<group>"; };
+		EBBBC10224C621D80056218F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBBFB6C324B8C240004E0423 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		EBEA042F249709C000D8DBB1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EBEA042F249709C000D8DBB1 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		EBEA04322497118600D8DBB1 /* ClipWithID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipWithID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,8 +161,12 @@
 			isa = PBXGroup;
 			children = (
 				EBEA042D2496FE2100D8DBB1 /* HomeTableViewCell.swift */,
-				EBEA042F249709C000D8DBB1 /* HomeViewController.swift */,
+				EBEA042F249709C000D8DBB1 /* ExploreViewController.swift */,
 				EB84469F24AF0061005B50FA /* CategoryCell.swift */,
+				EB60AE7324BE27420048D4A7 /* HomeView.swift */,
+				EB60AE7524BE2BE50048D4A7 /* HomeView.xib */,
+				EB60AE7724BE3A020048D4A7 /* HomeViewController.swift */,
+				EB60AE7924BE64FF0048D4A7 /* ExploreView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -150,6 +194,7 @@
 		EB5BF5C4248BDC5200882E7D /* Clippy */ = {
 			isa = PBXGroup;
 			children = (
+				EB606F2C24C7845100E1C8DD /* Clips.csv */,
 				EB70EE6024BA8FA00025C54C /* Add */,
 				EB70EE5D24BA2D380025C54C /* Search */,
 				EB6722AD2499255C00B56812 /* Networking */,
@@ -160,10 +205,14 @@
 				EB5BF5CE248BDC5300882E7D /* Assets.xcassets */,
 				EB5BF5D0248BDC5300882E7D /* LaunchScreen.storyboard */,
 				EB5BF5D3248BDC5300882E7D /* Info.plist */,
+				EB601AFD24D8705800218E92 /* Favorites */,
 				EBBFB6C524B8C24B004E0423 /* User */,
 				B279F447E2E9DC4570F43B90 /* Home */,
 				EB6D2840249850A1000A17BA /* LinkPresentationItemSource.swift */,
 				EB6D284224988C6F000A17BA /* UtilExtension.swift */,
+				EB60AE7124BE239D0048D4A7 /* TopBarView.xib */,
+				EB60AE6F24BE22BE0048D4A7 /* TopBarView.swift */,
+				EBBBC10224C621D80056218F /* GoogleService-Info.plist */,
 			);
 			path = Clippy;
 			sourceTree = "<group>";
@@ -188,11 +237,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB601AFD24D8705800218E92 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				EB601AFE24D8707600218E92 /* FavoriteView.xib */,
+				EB601B0024D875BA00218E92 /* FavoriteView.swift */,
+				EB601B0224D877C300218E92 /* FavoriteViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		EB6722AD2499255C00B56812 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				EB6722AE249925D400B56812 /* NetworkManger.swift */,
 				EB6722B0249937B600B56812 /* ClipService.swift */,
+				EB191DBF24CDDF8A00AD1156 /* UserService.swift */,
+				EB5F4F1C24DA6C680046D58C /* ClipRealmService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -205,6 +266,7 @@
 				EB63AC4A24B6DCF90088C944 /* DetailClipView.xib */,
 				EB6D283E2497D91A000A17BA /* DetailClipViewController.swift */,
 				EB63AC4824B68A420088C944 /* CategoryViewController.swift */,
+				EBAFA06424CA4D6100BFE22D /* RelatedClipTableViewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -231,6 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				EBBFB6C324B8C240004E0423 /* UserViewController.swift */,
+				EB69099124BBFB9C00BA392D /* SignUpViewController.swift */,
+				EB69099324BC02D900BA392D /* SignUpView.swift */,
+				EB601AF924D867F400218E92 /* UserInfoView.xib */,
+				EB601AFB24D86CFC00218E92 /* UserInfoView.swift */,
+				EB601B0424D87DDD00218E92 /* SignUpView.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -239,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				EBEA04322497118600D8DBB1 /* ClipWithID.swift */,
+				EB191DC124CDE0E700AD1156 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,7 +398,14 @@
 			files = (
 				EB63AC4B24B6DCF90088C944 /* DetailClipView.xib in Resources */,
 				EB5BF5D2248BDC5300882E7D /* LaunchScreen.storyboard in Resources */,
+				EB60AE7224BE239D0048D4A7 /* TopBarView.xib in Resources */,
 				EB5BF5CF248BDC5300882E7D /* Assets.xcassets in Resources */,
+				EB60AE7624BE2BE50048D4A7 /* HomeView.xib in Resources */,
+				EBBBC10324C621D80056218F /* GoogleService-Info.plist in Resources */,
+				EB606F2D24C7845200E1C8DD /* Clips.csv in Resources */,
+				EB601AFA24D867F400218E92 /* UserInfoView.xib in Resources */,
+				EB601B0524D87DDD00218E92 /* SignUpView.xib in Resources */,
+				EB601AFF24D8707600218E92 /* FavoriteView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,22 +507,35 @@
 			files = (
 				EB6EFBA9249C8BB800AEB16A /* SearchViewController.swift in Sources */,
 				EB70EE5F24BA2D730025C54C /* SearchView.swift in Sources */,
+				EB191DC024CDDF8A00AD1156 /* UserService.swift in Sources */,
 				EBBFB6C424B8C240004E0423 /* UserViewController.swift in Sources */,
 				EBEA042E2496FE2100D8DBB1 /* HomeTableViewCell.swift in Sources */,
 				EB63AC4924B68A420088C944 /* CategoryViewController.swift in Sources */,
 				EB6722B1249937B600B56812 /* ClipService.swift in Sources */,
 				EB5BF5CA248BDC5200882E7D /* AddClipViewController.swift in Sources */,
 				EB6D283C2497D706000A17BA /* DetailClipView.swift in Sources */,
+				EB60AE7024BE22BE0048D4A7 /* TopBarView.swift in Sources */,
 				EB5BF5E8248BDCA700882E7D /* AddClipView.swift in Sources */,
 				EB5BF5EA248BFB2C00882E7D /* TagCollectionViewCell.swift in Sources */,
+				EB60AE7824BE3A020048D4A7 /* HomeViewController.swift in Sources */,
+				EB69099424BC02D900BA392D /* SignUpView.swift in Sources */,
 				EB6D284324988C6F000A17BA /* UtilExtension.swift in Sources */,
+				EB60AE7A24BE64FF0048D4A7 /* ExploreView.swift in Sources */,
 				EB6722AF249925D400B56812 /* NetworkManger.swift in Sources */,
 				EB6D2841249850A1000A17BA /* LinkPresentationItemSource.swift in Sources */,
 				EB6D283F2497D91A000A17BA /* DetailClipViewController.swift in Sources */,
+				EB69099224BBFB9C00BA392D /* SignUpViewController.swift in Sources */,
+				EBAFA06524CA4D6100BFE22D /* RelatedClipTableViewCell.swift in Sources */,
 				EB8446A024AF0061005B50FA /* CategoryCell.swift in Sources */,
+				EB601B0124D875BA00218E92 /* FavoriteView.swift in Sources */,
+				EB601B0324D877C300218E92 /* FavoriteViewController.swift in Sources */,
+				EB191DC224CDE0E700AD1156 /* UserModel.swift in Sources */,
+				EB601AFC24D86CFC00218E92 /* UserInfoView.swift in Sources */,
 				EB5BF5C6248BDC5200882E7D /* AppDelegate.swift in Sources */,
+				EB5F4F1D24DA6C680046D58C /* ClipRealmService.swift in Sources */,
 				EBEA04332497118600D8DBB1 /* ClipWithID.swift in Sources */,
-				EBEA0430249709C000D8DBB1 /* HomeViewController.swift in Sources */,
+				EBEA0430249709C000D8DBB1 /* ExploreViewController.swift in Sources */,
+				EB60AE7424BE27420048D4A7 /* HomeView.swift in Sources */,
 				EB5BF5C8248BDC5200882E7D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

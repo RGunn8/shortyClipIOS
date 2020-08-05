@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let app = RealmApp(id: "shortyclip-sxkkl")
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -20,7 +22,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         viewController.tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
         let searchController = UINavigationController(rootViewController: SearchViewController())
         searchController.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 1)
-        tabBarController.viewControllers = [viewController,searchController,UIViewController()]
+
+        if app.currentUser() != nil {
+            let userViewController = UINavigationController(rootViewController: UserViewController())
+                     viewController.tabBarItem = UITabBarItem(title: "User", image: nil, tag: 0)
+              tabBarController.viewControllers = [viewController,searchController,userViewController]
+        }else{
+
+                app.login(withCredential: AppCredentials.anonymous()) { (user, error) in
+                    DispatchQueue.main.sync {
+                           guard error == nil else {
+                               print("Login failed: \(error!)")
+                               return
+                           }
+                        let userViewController = UINavigationController(rootViewController: SignUpViewController())
+                                       viewController.tabBarItem = UITabBarItem(title: "User", image: nil, tag: 0)
+                                tabBarController.viewControllers = [viewController,searchController,userViewController]
+
+                }
+
+            }
+        }
 
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)

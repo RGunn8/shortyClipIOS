@@ -8,9 +8,10 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 class ClipService{
-    var baseURL = "f8b9a2c55132.ngrok.io"
+    var baseURL = "9c334a2f1236.ngrok.io"
     static let shared = ClipService()
     private init(){}
 
@@ -32,6 +33,26 @@ class ClipService{
             }
         }
     }
+
+    func getClipDetail(clipdID:Int,completionHandler:@escaping (NetworkResponse)->()){
+
+           guard let url = getURL(path: "/api/v1/clip/\(clipdID)") else {
+               completionHandler(NetworkResponse.Error(error: "Invalid URL"))
+               return
+           }
+           AF.request(url).responseDecodable(of: ClipDetailResponse.self) { (response) in
+               if let error = response.error{
+                   print(error)
+                   completionHandler(NetworkResponse.Error(error: error.localizedDescription))
+                       return
+               }
+
+               if let clips = response.value{
+                   completionHandler(NetworkResponse.Success(response: clips))
+               }
+           }
+       }
+
 
     func getCategoryClips(categoryID:Int,pageNumber:Int = 1, completionHandler:@escaping (NetworkResponse)->()){
 
@@ -144,40 +165,41 @@ class ClipService{
 
     }
 
-    func addClip(clip:ClipPost, completionHandler:@escaping (NetworkResponse)->()){
-        guard let url = getURL(path: "/api/v1/clip/new") else {
-                   completionHandler(NetworkResponse.Error(error: "Invalid URL"))
-                   return
-               }
-
-
-
-        let defaults = UserDefaults.standard
-                  defaults.object(forKey: "token")
-                  let tokenString =  defaults.object(forKey: "token") as? String
-
-                  guard let token = tokenString else{
-                    completionHandler(NetworkResponse.Error(error: "No Token"))
-                    return
+   func addClip(clip:ClipPost, completionHandler:@escaping (NetworkResponse)->()){
+           guard let url = getURL(path: "/api/v1/clip/new") else {
+                      completionHandler(NetworkResponse.Error(error: "Invalid URL"))
+                      return
                   }
 
-        let header = HTTPHeader(name: "Authorization", value: "Token \(token)")
-        let request = AF.request(url,method: .post,parameters: clip,encoder: JSONParameterEncoder.default,headers: HTTPHeaders([header]))
 
 
-        request.response {response in
-            if let error = response.error{
-                completionHandler(NetworkResponse.Error(error: error.localizedDescription))
-                return
-            }
-            if let code = response.response?.statusCode{
-                if code == 201 {
-                    completionHandler(NetworkResponse.Success(response: true))
-                }
-            }
-        }
+           let defaults = UserDefaults.standard
+                     defaults.object(forKey: "token")
+                     let tokenString =  defaults.object(forKey: "token") as? String
 
-    }
+                     guard let token = tokenString else{
+                       completionHandler(NetworkResponse.Error(error: "No Token"))
+                       return
+                     }
+
+           let header = HTTPHeader(name: "Authorization", value: "Token \(token)")
+           let request = AF.request(url,method: .post,parameters: clip,encoder: JSONParameterEncoder.default,headers: HTTPHeaders([header]))
+
+
+           request.response {response in
+               if let error = response.error{
+                   completionHandler(NetworkResponse.Error(error: error.localizedDescription))
+                   return
+               }
+               if let code = response.response?.statusCode{
+                   if code == 201 {
+                       completionHandler(NetworkResponse.Success(response: true))
+                   }
+               }
+           }
+
+       }
+
 
     func getURL(path:String,searchString:String? = nil,pageNumber:Int? = nil) -> URL?{
         var components = URLComponents()
@@ -198,6 +220,7 @@ class ClipService{
 
         return components.url
     }
+
 }
 
 
@@ -206,3 +229,4 @@ public enum NetworkResponse {
     case Success(response:Codable)
     case Error(error:String)
 }
+

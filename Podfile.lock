@@ -3,12 +3,20 @@ PODS:
   - Cloudinary (2.9.0):
     - Cloudinary/ios (= 2.9.0)
   - Cloudinary/ios (2.9.0)
+  - Realm (10.0.0-beta.2):
+    - Realm/Headers (= 10.0.0-beta.2)
+  - Realm/Headers (10.0.0-beta.2)
+  - RealmSwift (10.0.0-beta.2):
+    - Realm (= 10.0.0-beta.2)
+  - SwiftCSV (0.5.6)
   - TTGTagCollectionView (1.11.1)
   - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Cloudinary (~> 2.0)
+  - RealmSwift (= 10.0.0-beta.2)
+  - SwiftCSV
   - TTGTagCollectionView
   - "UITextView+Placeholder"
 
@@ -16,15 +24,21 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Cloudinary
+    - Realm
+    - RealmSwift
+    - SwiftCSV
     - TTGTagCollectionView
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Cloudinary: 8e9511826bd58df6b14f0c6c042f2c5a034081f4
+  Realm: 211e32e680c354c9b1a2bdc0e3aeb01c25849641
+  RealmSwift: f9043abf9b6821ad5c3032c2a36b5ddfc90b4ce3
+  SwiftCSV: efb4a15dd7f2f1212b3d6986f97a3369ff6c5100
   TTGTagCollectionView: 86fcbfa6a7493c9e860b01c2e693cffc8acf6de1
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: 4ede28b9a60e7f1f8f5f86fd77e287d90e7276b6
+PODFILE CHECKSUM: c5d980049e7f9c831cdc9a2974307bb39a0bfe4d
 
 COCOAPODS: 1.9.1

@@ -116,7 +116,6 @@ class CategoryViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
 
     private func fetchTagDataFromIndex() {
-
              ClipService.shared.getFilterClips(searchText:tag,pageNumber: pageNumber) { (response) in
                                  DispatchQueue.main.async {
                                      switch response{
@@ -139,7 +138,7 @@ class CategoryViewController: UIViewController,UITableViewDelegate,UITableViewDa
           func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                 let clip = self.clips[indexPath.row]
                        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
-                       cell.bindCell(clip: clip)
+                      // cell.bindCell(clip: clip)
                        return cell
 
 
@@ -147,7 +146,7 @@ class CategoryViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let detailVC = DetailClipViewController()
-            detailVC.clip = clips[indexPath.row]
+            //detailVC.clip = clips[indexPath.row]
             self.navigationController?.pushViewController(detailVC, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
